@@ -2,7 +2,10 @@
 ## Interfacing a Digital output (LED) to LPC2148 ARM 7 Microcontroller 
 
 ## Aim: To Interface a Digital output (LED) to LPC2148 ARM 7 and write a blink code 
-## Components required: Proteus ISIS professional suite, Kiel μ vision 5 Development environment 
+
+## Components required: 
+Proteus ISIS professional suite, Kiel μ vision 5 Development environment 
+
 ## Theory 
 The full form of an ARM is an advanced reduced instruction set computer (RISC) machine, and it is a 32-bit processor architecture expanded by ARM holdings. The applications of an ARM processor include several microcontrollers as well as processors. The architecture of an ARM processor was licensed by many corporations for designing ARM processor-based SoC products and CPUs. This allows the corporations to manufacture their products using ARM architecture. Likewise, all main semiconductor companies will make ARM-based SOCs such as Samsung, Atmel, TI etc.
 
@@ -113,10 +116,44 @@ Figure -11 Hex file for simulation
 Step 9: Select the hex file from the Kiel program folder and import the program in to the microcontroller as shown in figure 11 ,  debug and if no errors in connections are found, run the VSM simulation to view the output.
 
 
-## Kiel - Program for LED blinking ON  and  OFF (blinking)
+## Kiel - Program for LED blinking ON  and  OFF (blinking):
+```
+#include <lpc214x.h>
+void delay_ms(unsigned int count)
+{
+  unsigned int j=0,i=0;
+  for(j=0;j<count;j++)
+  {
+    for(i=0;i<3000;i++);
+  }
+}
+int main() 
+{
+    PINSEL2 = 0x000000;  
+    IO1DIR = 0xffffffff; 
+    while(1)
+    {
+       IO1SET = 0xffffffff;     
+         delay_ms(1000);
+       IO1CLR = 0xffffffff;   
+         delay_ms(1000);
+    }
+}
+```
 
 ## Output screen shots :
- 
+Led Off:
+
+ ![1](https://user-images.githubusercontent.com/93427923/192138749-ed27a895-47fb-4f16-83b5-0a4190a33c6c.jpeg)
+
+Led On:
+
+![2](https://user-images.githubusercontent.com/93427923/192138757-0eaf83cc-9d60-41bc-ad32-ba0c1c1e25fa.jpeg)
+
+##Circuit Diagram:
+
+![image](https://user-images.githubusercontent.com/93427923/192138813-48be278b-8082-4bed-9275-96fe8eddea05.png)
+
 ## Result :
 Interfacing a digital output with ARM microcontroller is executed 
 
